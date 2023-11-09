@@ -1,0 +1,30 @@
+import pymysql
+
+conn = pymysql.connect(host='localhost',
+                        user='root',
+                        password='python',
+                        db='python',
+                        port=3305,
+                        charset='utf8')
+
+sql = "insert into emp values(4, '4', '4','4')"
+
+curs = conn.cursor()
+
+# curs.execute(sql)
+
+
+sql2 = 'select * from emp'
+
+sql3 = "delete from emp where e_id = 4"
+
+curs.execute(sql3)
+
+conn.commit() 
+#
+# result = curs.fetchall()
+#
+# for i in result :
+#     print(i)
+#
+

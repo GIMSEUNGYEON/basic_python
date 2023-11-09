@@ -1,0 +1,146 @@
+import sys
+from PyQt5 import uic
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.Qt import QWidget, QPushButton, QLabel, QPixmap
+
+flag_wb = True
+flag_ing = True
+arr2D = [[0]*10 for _ in range(10)]
+
+class MyLabel(QLabel):
+    def __init__(self, row, col, parent=None):
+        super().__init__(parent)
+        self.row = row
+        self.col = col
+        
+    def mousePressEvent(self, event):
+        global flag_wb
+        global flag_ing
+        
+        if not(flag_ing) :
+            return
+        
+        currentImg = self.pixmap().toImage().cacheKey()
+        paneImg = QPixmap('0.png').toImage().cacheKey()
+        
+        if currentImg and currentImg != paneImg: 
+            # 현재 이미지가 none이 아니고 and 패널 이미지와 같지 않을 때 
+            return
+            
+        try : 
+            if flag_wb : 
+                img = QPixmap('2.png')
+                arr2D[self.row][self.col] = 1
+            else :
+                img = QPixmap('1.png')
+                arr2D[self.row][self.col] = 2
+    
+            self.setPixmap(img)
+            
+            flag_wb = not(flag_wb)
+            
+            print(f"클릭한 라벨 위치 : row {self.row}, col {self.col}")
+            
+            stone = arr2D[self.row][self.col]
+            
+            up = self.getUP(self.row, self.col, stone)
+            down = self.getDW(self.row, self.col, stone)
+            print("up",up)
+            print("down",down)
+        except Exception as e :
+            print(e)
+        
+        
+    def getUP(self, row, col, stone):            
+        cnt = 0
+        try:
+            while True :
+                row-=1
+                if(arr2D[row][col] == stone) :
+                    cnt+=1
+                else :
+                    return cnt;
+        except Exception as e :
+            print(e)
+
+    def getDW(self, row, col, stone):            
+        cnt = 0
+        try:
+            while True :
+                row+=1
+                if(arr2D[row][col] == stone) :
+                    cnt+=1
+                else :
+                    return cnt;
+        except Exception as e :
+            print(e)
+
+    def getLE(self, row, col, stone):            
+        cnt = 0
+        try:
+            while True :
+                col-=1
+                if(arr2D[row][col] == stone) :
+                    cnt+=1
+                else :
+                    return cnt;
+        except Exception as e :
+            print(e)
+    
+    def getRI(self, row, col, stone):            
+        cnt = 0
+        try:
+            while True :
+                col+=1
+                if(arr2D[row][col] == stone) :
+                    cnt+=1
+                else :
+                    return cnt;
+    
+        except Exception as e :
+            print(e)
+        
+class MainClass(QMainWindow):
+    def __init__(self) :
+        QMainWindow.__init__(self)
+        self.show()
+        self.flag_wb = True
+        self.flag_ing = True
+        self.pane()
+    
+    def pane(self):
+        self.setGeometry(100,100,420,420)
+        self.setWindowTitle('omok')
+        
+        central_widget = QWidget(self)
+        self.setCentralWidget(central_widget)
+        
+        self.lbl_reset = QPushButton('reset', central_widget)
+        self.lbl_reset.setGeometry(410, 25, 40,40)
+        
+        self.lbl2D = [[None for _ in range(10)] for _ in range(10)]
+        
+        img = QPixmap('0.png')
+        for i in range(10) : 
+            for j in range(10) :
+                self.lbl2D[i][j] = MyLabel(i, j, central_widget)
+                self.lbl2D[i][j].setPixmap(img)                
+                self.lbl2D[i][j].setGeometry(j*40, i*40, 40, 40)
+        
+if __name__ == "__main__" :
+    app = QApplication(sys.argv) 
+    window = MainClass() 
+    app.exec_()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

@@ -1,0 +1,147 @@
+package day05;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
+
+public class MyOmok02_1 extends JFrame {
+
+	private JPanel contentPane;
+	boolean flag_wb = true;
+	int[][] arr2D = { 
+			{ 0, 0, 0, 0, 0, 	0, 0, 0, 0, 0 }, 
+			{ 0, 0, 0, 0, 0, 	0, 0, 0, 0, 0 },
+			{ 0, 0, 0, 0, 0, 	0, 0, 0, 0, 0 }, 
+			{ 0, 0, 0, 0, 0, 	0, 0, 0, 0, 0 }, 
+			{ 0, 0, 0, 0, 0, 	0, 0, 0, 0, 0 },
+
+			{ 0, 0, 0, 0, 0, 	0, 0, 0, 0, 0 }, 
+			{ 0, 0, 0, 0, 0, 	0, 0, 0, 0, 0 }, 
+			{ 0, 0, 0, 0, 0, 	0, 0, 0, 0, 0 },
+			{ 0, 0, 0, 0, 0, 	0, 0, 0, 0, 0 }, 
+			{ 0, 0, 0, 0, 0, 	0, 0, 0, 0, 0 } 
+		};
+
+	JLabel[][] lbl2D = new JLabel[10][10];
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MyOmok02_1 frame = new MyOmok02_1();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public MyOmok02_1() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 450);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("0,0");
+		lblNewLabel.setIcon(new ImageIcon(MyOmok02_1.class.getResource("/day05/0.png")));
+		lblNewLabel.setBounds(405, 296, 40, 40);
+		contentPane.add(lblNewLabel);
+
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				JLabel lbl = new JLabel("");
+				lbl.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						myclick(e);
+					}
+				});
+				lbl.setIcon(new ImageIcon(MyOmok02.class.getResource("/day05/0.png")));
+				lbl.setBounds(j * 40, i * 40, 40, 40);
+				lbl.setText(i + "," + j);
+				contentPane.add(lbl);
+				lbl2D[i][j] = lbl;
+			}
+		}
+
+		myrender();
+	}
+
+	void myrender() {
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				if (arr2D[i][j] == 0) {
+					lbl2D[i][j].setIcon(new ImageIcon(MyOmok02.class.getResource("/day05/0.png")));
+				}
+				if (arr2D[i][j] == 1) {
+					lbl2D[i][j].setIcon(new ImageIcon(MyOmok02.class.getResource("/day05/2.png")));
+				}
+				if (arr2D[i][j] == 2) {
+					lbl2D[i][j].setIcon(new ImageIcon(MyOmok02.class.getResource("/day05/1.png")));
+				}
+			}
+		}
+	}
+	
+	int getUP(int i, int j, int stone) {
+		int cnt = 0;
+		while(true) {
+			i--;
+			if(arr2D[i][j] == stone) {
+				cnt++;
+				return cnt;
+			}else {
+				return cnt;
+			}
+		}
+	}
+	
+	void myclick(MouseEvent e) {
+//		System.out.println(e.getComponent()); //panel안에 있는 모든 요소를 리스트로 관리 
+//		System.out.println(e.getSource()); // 클릭 이벤트가 발생한 대상 객체를 관리
+		JLabel temp = (JLabel) e.getSource();
+//		System.out.println(temp.getText());
+		String[] arr_ij = temp.getText().split(",");
+
+		int i = Integer.parseInt(arr_ij[0]);
+		int j = Integer.parseInt(arr_ij[1]);
+
+		if(arr2D[i][j] > 0)	return;
+		
+		int stone = 0;
+		
+		if (flag_wb) {
+			arr2D[i][j] = 1;
+			stone = 1;
+			
+		} else {
+			arr2D[i][j] = 2;
+			stone = 2;
+		}
+		
+		int up = getUP(i,j,stone);
+		System.out.println("up : " + up);
+		myrender();
+		
+		flag_wb = !flag_wb;
+		
+		
+	}
+}

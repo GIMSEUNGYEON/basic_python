@@ -1,0 +1,13 @@
+package day05;
+
+public class MySplit {
+	public static void main(String[] args) {
+		String str = "helloeunjung";
+		
+		String []strarr = str.split("e");
+		
+		for(String s : strarr) {
+			System.out.println(s);
+		}
+	}
+}

@@ -1,0 +1,10 @@
+package kr.co.aiai.model;
+
+public class Emp {
+	private String e_id = "";
+	private String e_name = "";
+	private String gen = "";
+	private String addr = "";
+	
+	
+}

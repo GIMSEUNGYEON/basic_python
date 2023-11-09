@@ -1,0 +1,41 @@
+package kr.co.aiai.dao;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ibatis.sqlmap.client.SqlMapClient;
+
+import kr.co.aiai.ibatis.MySqlMapper;
+import kr.co.aiai.model.Emp;
+
+
+
+public class EmpDao {
+	private static SqlMapClient sqlMapper;
+
+	public EmpDao() {
+		sqlMapper = MySqlMapper.getSqlMapper();
+	}
+
+	public List<Emp> selectList() throws SQLException {
+		return sqlMapper.queryForList("selectList");
+	}
+
+
+	public static void main(String[] args) throws SQLException {
+		EmpDao dao = new EmpDao();
+		
+		List<Emp> list = dao.selectList();
+		
+		for(int i = 0; i < list.size(); i++) {
+			Emp vo = list.get(i);
+			System.out.print(vo.getE_id() + "\t");
+			System.out.print(vo.getE_name() + "\t");
+			System.out.print(vo.getGen() + "\t");
+			System.out.println(vo.getAddr() + "\t");
+		}
+	}
+
+}
+
