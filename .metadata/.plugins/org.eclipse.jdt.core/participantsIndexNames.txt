@@ -1,5 +1,0 @@
-INDEX VERSION 1.131
-C:\workspace_python\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2826187354.index
-\Hello_WEB_EMP\src\main\java
-C:\workspace_python\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2037356396.index
-\HELLO_WEB_EMP_\src\main\java
