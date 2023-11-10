@@ -13,6 +13,8 @@ class MainClass(QMainWindow, form_class):
         
     def myClick(self):
         dan = int(self.te.toPlainText())
+        # toPlainText가져올 땐 여러줄 가져올때
+        # labelText는 한줄만 들어갈 수 있는 텍스트이므로 text로 가져옴
         str = "";
         for i in range(1, 9+1) :
             str += f"{dan} * {i} = {dan*i}\n"

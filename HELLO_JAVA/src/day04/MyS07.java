@@ -19,9 +19,7 @@ public class MyS07 extends JFrame {
 	private JTextField tf_last;
 	JTextArea ta;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -35,9 +33,6 @@ public class MyS07 extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public MyS07() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 310, 445);

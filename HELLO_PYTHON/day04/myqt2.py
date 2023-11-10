@@ -14,6 +14,7 @@ class MyWindow(QMainWindow):
         
     def change_label_text(self):
         self.click_count += 1
+        print('click')
         # 함수가 호출될 때마다 클릭 횟수 증가
         if(self.click_count%2 == 0) :
             new_text = "Good Morning"

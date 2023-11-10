@@ -15,13 +15,17 @@ class Putin :
         return self.cnt_nuclear
     def __del__(self):
         print("소멸자")
+
+class Minkyu(Xi, Putin) : 
+    def __init__(self):
+        Xi.__init__(self)
+        Putin.__init__(self)
         
 if __name__ == "__main__" :
-    desc = Xi()
+    desc = Minkyu()
     print(desc.money)
-    print(desc.spend(300))
+    print("우민규돈", desc.spend(300))
     
-    desc = Putin()
     print(desc.cnt_nuclear)
     print(desc.war())
     print(desc.war())

@@ -11,6 +11,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MyS09 extends JFrame {
 
@@ -50,11 +52,21 @@ public class MyS09 extends JFrame {
 		contentPane.add(tf);
 		tf.setColumns(10);
 		tf.setHorizontalAlignment(SwingConstants.RIGHT);
+		//전화번호가 입력될 때 오른쪽 정렬
 		
 		btn1 = new JButton("1");
+		btn1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JButton imsi = (JButton) e.getSource(); //오브젝트 타입을 JButton타입으로 캐스팅
+//				System.out.println(imsi.getText());    
+//				System.out.println(e.getComponent()); //오브젝트 반환
+				myClick(e);
+			}
+		});
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				inputTest(btn1);
+//				inputTest(btn1);
 			}
 		});
 		btn1.setBounds(46, 99, 91, 23);
@@ -148,9 +160,11 @@ public class MyS09 extends JFrame {
 		btn_call = new JButton("☎");
 		btn_call.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, tf.getText() + "에게 전화를 겁니다.");
+//				JOptionPane.showMessageDialog(null, tf.getText() + "에게 전화를 겁니다.");
+				myCall();
 			}
 		});
+		
 		btn_call.setBounds(158, 242, 205, 23);
 		contentPane.add(btn_call);
 		
@@ -163,5 +177,20 @@ public class MyS09 extends JFrame {
 		String pNum = tf.getText();
 		pNum += num;
 		tf.setText(pNum);
+	}
+	
+	void myClick(MouseEvent e) {
+		JButton temp = (JButton) e.getComponent();
+		
+		String str_new = temp.getText();
+		System.out.println(str_new);
+		String str_old = tf.getText();
+		
+		tf.setText(str_old + str_new);
+	}
+	
+	void myCall() {
+		JOptionPane.showMessageDialog(null, "calling...\n" + tf.getText());
+		
 	}
 }

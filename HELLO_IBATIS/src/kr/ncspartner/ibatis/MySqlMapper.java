@@ -12,8 +12,7 @@ public class MySqlMapper {
 
 	static {
 		try {
-			Reader reader = Resources
-					.getResourceAsReader("kr/ncspartner/ibatis/SqlMapConfig.xml");
+			Reader reader = Resources.getResourceAsReader("kr/ncspartner/ibatis/SqlMapConfig.xml");
 			sqlMapper = SqlMapClientBuilder.buildSqlMapClient(reader);
 			reader.close();
 		} catch (IOException e) {

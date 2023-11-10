@@ -15,7 +15,7 @@ public class EmpDao {
 		sqlMapper = MySqlMapper.getSqlMapper();
 	}
 
-	public Emp select(int e_id) throws SQLException {
+	public Emp select(String e_id) throws SQLException {
 		return (Emp) sqlMapper.queryForObject("select", e_id);
 	}
 	
@@ -38,7 +38,7 @@ public class EmpDao {
 	public static void main(String[] args) throws SQLException {
 		EmpDao dao = new EmpDao();
 		
-		Emp e = dao.select(1);
+		Emp e = dao.select("1");
 		
 		System.out.print(e.getE_id() + "\t");
 		System.out.print(e.getE_name() + "\t");

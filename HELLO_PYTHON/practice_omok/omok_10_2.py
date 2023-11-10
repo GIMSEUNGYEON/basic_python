@@ -24,7 +24,7 @@ class MyLabel(QLabel):
         paneImg = QPixmap('0.png').toImage().cacheKey()
         
         if currentImg and currentImg != paneImg: 
-            # 현재 이미지가 none이 아니고 and 패널 이미지와 같지 않을 때 
+            # 현재 이미지가 none이 아니고 & 패널 이미지와 같지 않을 때 
             return
             
         try : 
@@ -38,7 +38,6 @@ class MyLabel(QLabel):
                 arr2D[self.row][self.col] = 2
     
             self.setPixmap(img)
-            
             
             # print(f"클릭한 라벨 위치 : row {self.row}, col {self.col}")
             
@@ -76,6 +75,7 @@ class MyLabel(QLabel):
                 flag_ing = False
                 
             flag_wb = not(flag_wb)
+            # 한 턴이 끝나면 순서 반전
         except Exception as e :
             print(e)
         
@@ -194,15 +194,22 @@ class MainClass(QMainWindow):
         self.pane()
     
     def pane(self):
+        # 패널을 선언하는 메서드
+
         self.setGeometry(100,100,650,650)
         self.setWindowTitle('omok')
+        # 전체 패널 크기, 윈도우창의 이름 설정
         
         central_widget = QWidget(self)
+        
         self.setCentralWidget(central_widget)
+        # 중앙 위젯에 해당하여 윈도우 초기화
         
         self.btn_reset = QPushButton('reset', central_widget)
         self.btn_reset.setGeometry(610, 25, 40,40)
         self.btn_reset.clicked.connect(self.MyClick)
+        # 리셋 버튼 선언
+        
         self.lbl2D = [[None for _ in range(15)] for _ in range(15)]
         
         img = QPixmap('0.png')
@@ -211,6 +218,7 @@ class MainClass(QMainWindow):
                 self.lbl2D[i][j] = MyLabel(i, j, central_widget)
                 self.lbl2D[i][j].setPixmap(img)                
                 self.lbl2D[i][j].setGeometry(j*40, i*40, 40, 40)
+        # 2차원 라벨 배열 선언
         
     def MyClick(self):
         global flag_ing
@@ -223,7 +231,7 @@ class MainClass(QMainWindow):
             for j in range(15) :
                 self.lbl2D[i][j].setPixmap(QPixmap('0.png'))
                 arr2D[i][j] = 0                
-        
+    # 리셋 버튼이 클릭됐을 때 호출되는 리셋 메서드    
 if __name__ == "__main__" :
     app = QApplication(sys.argv) 
     window = MainClass() 

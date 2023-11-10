@@ -5,6 +5,7 @@ while(True) :
     me = input("가위 바위 보 입력 : ")
 
     print('나 : ' + me) 
+    
     mynum = 0;
     if me == '가위' : 
         mynum = 1
@@ -37,7 +38,24 @@ if (mynum - comnum) == -2 or  (mynum - comnum) == 1 :
     print('win!')
 elif(mynum - comnum) == 0 : 
     print('무승부!')
+    print('무승부!')
 else :
     print('lose!')
 
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     

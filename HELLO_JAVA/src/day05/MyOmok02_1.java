@@ -258,12 +258,11 @@ public class MyOmok02_1 extends JFrame {
 		
 		if (flag_wb) {
 			arr2D[i][j] = 1;
-			stone = 1;
 			
 		} else {
 			arr2D[i][j] = 2;
-			stone = 2;
 		}
+		stone = arr2D[i][j];
 		
 		int up = getUP(i, j, stone);
 		int dw = getDW(i, j, stone);

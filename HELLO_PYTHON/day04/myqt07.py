@@ -21,8 +21,7 @@ class MainClass(QMainWindow, form_class):
             answer += self.getStar(i)
     
         self.te.setPlainText(answer)
-    
-
+        
     def getStar(self, num):
         star = ''
         for i in range(1,num+1) :
@@ -30,6 +29,7 @@ class MainClass(QMainWindow, form_class):
         star+='\n'
         # print(star)
         return star
+
 if __name__ == "__main__" :
     app = QApplication(sys.argv) 
     window = MainClass() 

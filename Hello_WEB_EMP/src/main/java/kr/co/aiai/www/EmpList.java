@@ -21,11 +21,8 @@ public class EmpList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("emp_list.jsp");
 		
-		String a = "홍길동";
 		request.setCharacterEncoding("UTF-8");
-		request.setAttribute("이름", a);
 				
-		
 		ArrayList<Emp> list = new ArrayList<Emp>();
 
 		EmpDao dao = new EmpDao();
