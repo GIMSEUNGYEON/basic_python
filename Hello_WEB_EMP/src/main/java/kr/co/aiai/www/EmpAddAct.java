@@ -1,0 +1,52 @@
+package kr.co.aiai.www;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.co.aiai.dao.EmpDao;
+import kr.co.aiai.model.Emp;
+
+@WebServlet("/emp_add_act")
+public class EmpAddAct extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		request.setCharacterEncoding("UTF-8");
+		
+		EmpDao dao = new EmpDao();
+		
+		String e_id = request.getParameter("e_id");
+		String e_name = request.getParameter("e_name");
+		String gen = request.getParameter("gen");
+		String addr = request.getParameter("addr");
+		
+		Emp vo = new Emp(e_id, e_name, gen, addr);
+		
+		int cnt = 0;
+		
+		try {
+			cnt = dao.insert(vo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("cnt", cnt);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("emp_add_act.jsp");
+		
+		rd.forward(request, response);
+	}
+
+}
