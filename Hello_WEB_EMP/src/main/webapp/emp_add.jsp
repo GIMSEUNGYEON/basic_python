@@ -24,7 +24,7 @@
 
 </style>
 <script>
-	function fn_mod_act(){
+	function fn_add_act(){
 		
 		document.frm.submit();
 		
@@ -55,7 +55,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="button" value="저장" onclick="fn_mod_act()">
+				<input type="button" value="저장" onclick="fn_add_act()">
 			</td>
 		</tr>
 	</table>
