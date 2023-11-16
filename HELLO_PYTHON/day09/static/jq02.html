@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.7.1.js"></script>
+<style>
+	#ita, #itb, #itc{
+		width:30px;
+	}
+</style>
+<script>
+	var cnt = 0;
+	
+	function myClick(){
+		
+		var obj_a = $('#ita')
+		var obj_b = $('#itb')
+		var obj_c = $('#itc')
+		
+		var a = obj_a.val()
+		var b = obj_b.val()
+		
+		console.log(a,b)
+		
+		var aa = parseInt(a)
+		var bb = parseInt(b)
+		
+		var sum = aa + bb
+		
+		obj_c.val(sum)
+	}
+	
+	$(document).ready(function(){
+		$("#btn").on("click", function(event) {  
+			myClick();
+		});
+	});
+
+</script>
+</head>
+<body>
+	<input type="text" id="ita" />
+	+
+	<input type="text" id="itb" />
+	
+	<input type="button" value="=" id="btn"/>
+	
+	<input type="text" id="itc" />
+</body>
+</html>

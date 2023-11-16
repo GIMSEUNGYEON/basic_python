@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.mytd {
+		width:17px;
+		text-align:center;
+	}
+	
+</style>
+<script>
+	
+	function myClick(){
+		const lotto = new Array(6);
+		for(var i = 0; i < lotto.length; i++){
+			var num = parseInt(Math.random() *45) + 1;
+			lotto[i] = num;
+			for(var j = 0; j < i; j++){
+				if(lotto[j] == lotto[i]){
+					i--;
+					break;
+				}
+			}
+		}
+		
+		var mytd = document.querySelectorAll('.mytd');
+		for(var i=0; i< mytd.length; i++){
+			mytd[i].innerText = lotto[i];
+		}
+	}
+	
+	function myClick2(){
+        var arr = [
+        	1,2,3,4,5,       6,7,8,9,10,    
+            11,12,13,14,15,  16,17,18,19,20, 
+            21,22,23,24,25,  26,27,28,29,30, 
+            31,32,33,34,35,  36,37,38,39,40,      
+            41,42,43,44,45 ]
+	
+		for(var i = 0; i < 10000; i++){
+			var rnd = parseInt(Math.random() *45);
+			var a = arr[0]
+			arr[0] = arr[rnd]
+			arr[rnd] = a
+		}
+		var mytd = document.querySelectorAll('.mytd');
+
+		for(var i=0; i< mytd.length; i++){
+			mytd[i].innerText = arr[i];
+		}
+        
+	}
+	
+</script>
+</head>
+<body>
+	<table border=1>
+		<tr>
+			<td class=mytd>__</td>
+			<td class=mytd>__</td>
+			<td class=mytd>__</td>
+			<td class=mytd>__</td>
+			<td class=mytd>__</td>
+			<td class=mytd>__</td>
+		</tr>
+		
+		<tr>
+			<td colspan=6>
+				<input type="button" value="로또 생성하기" onclick="myClick2()"/>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

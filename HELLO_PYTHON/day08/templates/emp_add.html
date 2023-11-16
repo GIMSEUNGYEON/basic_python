@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function fn_add_act(){
+		document.frm.submit();
+	}
+</script>
+</head>
+<body>
+	회원 추가
+<form name="frm" action="emp_add_act" method="post">
+	<table border=1>
+		<tr>
+			<td>사번</td>
+			<td><input type="text" name="e_id"></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" name="e_name"></td>
+		</tr>
+		<tr>
+			<td>성별</td>
+			<td><input type="text" name="gen"></td>
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td><input type="text" name="addr"></td>
+		</tr>
+		<tr>
+			<td colspan = 2>
+				<input type="button" value="저장" onclick="fn_add_act()">
+			</td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

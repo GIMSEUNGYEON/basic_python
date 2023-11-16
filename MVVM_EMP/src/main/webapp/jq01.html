@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.7.1.js"></script>
+<script>
+var cnt = 0
+	function myClick(){
+		cnt++
+		if(cnt%2 == 1){			
+			$("#mydiv").html("Good Evening")
+		}else {
+			$("#mydiv").html("Good Morning")			
+		}
+	}
+
+	$(document).ready(function(){
+		$("#btn").on("click", function(event) {  
+			myClick();
+		});
+	});
+
+	</script>
+</head>
+<body>
+	<div id="mydiv">Good Morning</div>
+	<input type="button" value="클릭" id="btn" />
+</body>
+</html>

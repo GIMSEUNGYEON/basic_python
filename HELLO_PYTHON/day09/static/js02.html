@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#ita, #itb, #itc{
+		width:30px;
+	}
+</style>
+<script>
+	var cnt = 0;
+	
+	function myClick(){
+// 		console.log('test')
+// 		let obj_a = parseInt(document.getElementById('ita').value);
+// 		let obj_b = parseInt(document.getElementById('itb').value);
+		
+// 		document.getElementById("itc").value = obj_a + obj_b;
+		
+		var obj_a = document.getElementById('ita')
+		var obj_b = document.getElementById('itb')
+		var obj_c = document.getElementById('itc')
+		
+		var a = obj_a.value
+		var b = obj_b.value
+		
+		var aa = parseInt(a)
+		var bb = parseInt(b)
+		
+		var sum = aa + bb
+		
+		obj_c.value = sum
+	}
+</script>
+</head>
+<body>
+	<input type="text" id="ita" />
+	+
+	<input type="text" id="itb" />
+	
+	<input type="button" value="=" onclick="myClick()"/>
+	
+	<input type="text" id="itc" />
+</body>
+</html>

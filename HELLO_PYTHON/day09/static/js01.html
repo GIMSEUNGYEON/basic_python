@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var cnt = 0;
+	
+	function myClick() {
+		cnt++;
+		if (cnt % 2 == 1) {
+			document.getElementById("mydiv").innerText = "Good Evening"
+		} else {
+			document.getElementById("mydiv").innerText = "Good Morning"
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="mydiv">
+		Good Morning
+	</div>
+	<input type="button" value="클릭" onclick="myClick()" />
+</body>
+</html>

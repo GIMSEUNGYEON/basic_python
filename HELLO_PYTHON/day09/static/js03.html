@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#it_dan{
+		width:30px;
+	}
+	
+</style>
+<script>
+	function myClick(){
+		var dan = parseInt(document.getElementById("it_dan").value)
+		var answer = '';
+		for(var i = 1; i < 10; i++){
+			answer += dan + " * " + i + " = " + i*dan + "\n";
+		}
+		document.getElementById("ta").value = answer
+	}
+</script>
+</head>
+<body>
+	<table border=1>
+		<tr>
+			<td>출력단수</td>
+			<td><input type="text" id="it_dan"/></td>
+		</tr>
+		<tr>
+			<td colspan=2><input type="button" value="출력하기" onclick="myClick()"/></td>
+		</tr>
+		<tr>
+			<td colspan=2>
+				<textarea id="ta" rows="20" cols="20"></textarea>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

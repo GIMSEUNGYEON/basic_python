@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $("button").click(()=>{
+	        $.ajax({
+	            url:"index",
+	            type:"get",
+	            success:(res)=>{
+	                console.log(res);
+	                let json = JSON.parse(res);
+	                console.log(json);
+	                $("#demo").text(json.number + ":" + json.name);
+	            },
+	            error:()=>{
+	                alert("error");
+	            }
+	        })
+	    })
+	});
+</script>
+</head>
+<body>
+	<input type="button" value="click" id="btn">
+	<div id="test"></div>
+</body>
+</html>

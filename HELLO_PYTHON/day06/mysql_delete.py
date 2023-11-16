@@ -13,11 +13,7 @@ gen = '7';
 addr = '7';
 
 sql = f"""
-      update emp 
-      set 
-          e_name = '{e_name}',
-          gen = '{gen}',
-          addr = '{addr}'
+        delete from emp
       where 
           e_id = {e_id}
       """

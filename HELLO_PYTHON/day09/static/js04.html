@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#it_mine, #it_com, #it_result {
+		width:30px;
+	}
+</style>
+<script>
+	function myClick(){
+
+		const random = parseInt(Math.random()*2)+1;
+		
+		var obj_mine = document.getElementById("it_mine")
+		var obj_com = document.getElementById("it_com")
+		
+		if(random == 1){
+// 			document.getElementById("it_com").value =  "홀";
+			obj_com.value ="홀";
+		}else{
+// 			document.getElementById("it_com").value =  "짝";	
+			obj_com.value ="짝";
+		}
+		var mine = obj_mine.value;
+		var com = obj_com.value;
+		
+		if(mine === com){
+			document.getElementById("it_result").value =  "승리";	
+			
+		} else {
+			document.getElementById("it_result").value =  "패배";	
+			
+		}
+	}
+
+</script>
+</head>
+<body>
+	<table border=1>
+		<tr>
+			<td>나 : </td>
+			<td>
+				<input type="text" id="it_mine">
+			</td>
+		</tr>
+		<tr>
+			<td>컴 : </td>
+			<td>
+				<input type="text" id="it_com">
+			</td>
+		</tr>
+		<tr>
+			<td>결과 : </td>
+			<td>
+				<input type="text" id="it_result">
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2>
+				<input type="button" value="게임하기" onclick="myClick()">
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

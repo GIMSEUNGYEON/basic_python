@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#it {
+		text-align: right;
+	}
+</style>
+<script>
+	let answer = '';
+	function btn_click(e){
+		var btn_val = parseInt(e.target.value)
+//      var btn_val = parseInt(e.value);
+// 		console.log(btn_val)
+// 		console.log(e.target)
+        
+		answer += btn_val
+		
+		document.getElementById("it").value = answer
+	}
+	
+	function myClick(){
+		var tel = document.getElementById("it").value;
+		alert(tel + "에게 전화를 겁니다....")
+		document.getElementById("it").value = null;		
+		answer = '';
+	}
+</script>
+</head>
+<body>
+	<table border=1>
+		<tr>
+			<td colspan=3>
+				<input type="text" id="it"/>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="button" class="btn" value="1" onclick="btn_click(event)"/></td>
+			<td><input type="button" class="btn" value="2" onclick="btn_click(event)"/></td>
+			<td><input type="button" class="btn" value="3" onclick="btn_click(event)"/></td>
+		</tr>
+		<tr>
+			<td><input type="button" class="btn" value="4" onclick="btn_click(event)"/></td>
+			<td><input type="button" class="btn" value="5" onclick="btn_click(event)"/></td>
+			<td><input type="button" class="btn" value="6" onclick="btn_click(event)"/></td>
+		</tr>
+		<tr>
+			<td><input type="button" class="btn" value="7"onclick="btn_click(event)"/></td>
+			<td><input type="button" class="btn" value="8"onclick="btn_click(event)"/></td>
+			<td><input type="button" class="btn" value="9"onclick="btn_click(event)"/></td>
+		</tr>                                             
+		<tr>                                              
+			<td><input type="button" class="btn" value="0"onclick="btn_click(event)"/></td>
+			<td colspan=2><input type="button" class="btn_call" value="☎" onclick="myClick()"/></td>
+		</tr>
+	</table>
+</body>
+</html>

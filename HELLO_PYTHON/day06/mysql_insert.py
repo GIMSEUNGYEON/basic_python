@@ -16,8 +16,8 @@ curs.execute(sql)
 
 sql2 = 'insert into emp values(%s,%s,%s,%s)'
 
-curs.execute(sql2, (5,'5','5','5'))
-
+cnt = curs.execute(sql2, (5,'5','5','5'))
+print(cnt)
 conn.commit() 
 
 curs.close()
