@@ -7,20 +7,25 @@
 <script>
 var cnt = 0
 	function myClick(){
-		cnt++
-		if(cnt%2 == 1){			
-			$("#mydiv").html("Good Evening")
-		}else {
-			$("#mydiv").html("Good Morning")			
-		}
+		var param = "";
+		param += "dummy=" + Math.random();
+		param += "&domain_url=hello";
+		$.ajax({
+			url : "list",
+			data : param,
+			dataType : "json",
+			type : "post",
+			async: true,
+			success : function(res) {
+				console.log(res)
+			}
+		});
 	}
-
 	$(document).ready(function(){
-		$("#btn").on("click", function(event) {  
+		$("#btn").on("click", function(event){
 			myClick();
 		});
 	});
-
 	</script>
 </head>
 <body>

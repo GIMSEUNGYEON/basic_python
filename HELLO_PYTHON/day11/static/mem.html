@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#m_id, #m_name, #mobile, #email {
+		width:90px;
+	}
+</style>
+<script src="jquery-3.7.1.js"></script>
+<script>
+
+	function fn_list(){
+		$.ajax({
+		type:'POST',
+		url:'/mem',
+		dataType:'JSON',
+		contentType:'application/json',
+		success:function(res){
+			console.log(res)
+			var list = res
+			var txt = "";
+			for(var i = 0; i < list.length; i++){
+				var m = list[i];
+				txt += `
+					<tr>
+						<td><a href='javascript:fn_one(${m.m_id})'>${m.m_id}</a></td>
+						<td><a>${m.m_name}</a></td>
+						<td><a>${m.mobile}</a></td>
+						<td><a>${m.email}</a></td>
+					</tr>
+				`;
+			}
+			$('#my_tbody').html(txt)
+		}
+		});
+	}
+
+function fn_one(m_id){
+	$.ajax({
+		type:'POST',
+		url:'/mem_one',
+		data:(JSON.stringify({ 'm_id': m_id })),
+		dataType:'JSON',
+		contentType:'application/json',
+		success:function(mem){	
+			$('#m_id').val(mem.m_id)
+			$('#m_name').val(mem.m_name)
+			$('#mobile').val(mem.mobile)
+			$('#email').val(mem.email)
+		}
+	});
+}
+
+function fn_add(){
+	var params = {
+		'm_id' : $('#m_id').val(),
+		'm_name' : $('#m_name').val(),
+		'mobile' : $('#mobile').val(),
+		'email' : $('#email').val()
+	}
+	
+	$.ajax({
+		type:'POST',
+		url:'/mem_add',
+		data:(JSON.stringify(params)),
+		dataType:'JSON',
+		contentType:'application/json',
+		success:function(cnt){	
+			console.log(cnt)
+			if(cnt == 1){
+				alert('추가되었습니다.')
+				fn_list();
+				fn_clear();
+			}else{
+				alert('추가 실패!')
+				
+			}
+		}
+	});
+}
+
+function fn_mod(){
+	console.log('수정 확인')
+	var params = {
+		'm_id' : $('#m_id').val(),
+		'm_name' : $('#m_name').val(),
+		'mobile' : $('#mobile').val(),
+		'email' : $('#email').val()
+	}
+	
+	$.ajax({
+		type:'POST',
+		url:'/mem_mod',
+		data:(JSON.stringify(params)),
+		dataType:'JSON',
+		contentType:'application/json',
+		success:function(cnt){	
+			console.log(cnt)
+			if(cnt == 1){
+				alert('수정되었습니다.')
+				fn_list();
+				fn_clear();
+			}else{
+				alert('수정 실패!')
+			}
+		}
+	});
+}
+
+function fn_del(){
+	var flag = confirm('한번 삭제된 데이터는 복구할 수 없습니다. 그래도 삭제하시겠습니까?')
+	
+	if(!flag){
+		return;
+	}
+	
+	$.ajax({
+		type:'POST',
+		url:'/mem_del',
+		data:(JSON.stringify({ 'm_id': $('#m_id').val()})),
+		dataType:'JSON',
+		contentType:'application/json',
+		success:function(cnt){	
+			console.log(cnt)
+			if(cnt == 1){
+				alert('삭제되었습니다.')
+				fn_list();
+				fn_clear();
+			}else{				
+				alert('삭제 실패!')
+			}
+		}
+	});
+}
+
+function fn_clear(){
+	$('#m_id').val("");
+	$('#m_name').val("");
+	$('#mobile').val("");
+	$('#email').val("");
+}
+
+$(document).ready(function(){
+	fn_list();
+	$("#btn_add").on("click", function(event) {  
+		fn_add();
+	});
+	
+	$("#btn_mod").on("click", function(event) {  
+		fn_mod();
+	});
+	
+	$("#btn_del").on("click", function(event) {  
+		fn_del();
+	});
+});
+</script>
+</head>
+<body>
+	<table border='1'>
+		<ta>
+			<td>사번</td>
+			<td>이름</td>
+			<td>번호</td>
+			<td>메일</td>
+		</ta>
+		<tbody id='my_tbody'>
+			<tr>
+				<td colspan='4'>검색된 데이터가 없습니다</td>		
+			</tr>
+		</tbody>
+	</table>
+	
+	<br>
+	
+	<table border=1>
+		<tr>
+			<td>사번</td>
+			<td><input type='text' id='m_id' /></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><input type='text' id='m_name'/></td>
+		</tr>
+		<tr>
+			<td>번호</td>
+			<td><input type='text' id='mobile' /></td>
+		</tr>
+		<tr>
+			<td>메일</td>
+			<td><input type='text' id='email'/></td>
+		</tr>
+		<tr>
+			<td colspan=2>
+				<input type="button" value="추가" id="btn_add"/>
+				<input type="button" value="수정" id="btn_mod"/>
+				<input type="button" value="삭제" id="btn_del"/>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
