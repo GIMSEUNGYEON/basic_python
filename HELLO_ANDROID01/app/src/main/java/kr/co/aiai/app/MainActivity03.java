@@ -3,19 +3,22 @@ package kr.co.aiai.app;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity02 extends AppCompatActivity {
-    TextView tv = null;
+public class MainActivity03 extends AppCompatActivity {
+    EditText et_dan, et_disp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main02);
+        setContentView(R.layout.activity_main03);
 
         Button btn = findViewById(R.id.btn);
-        tv = findViewById(R.id.tv);
+        et_dan = findViewById(R.id.et_dan);
+        et_disp = findViewById(R.id.et_disp);
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -24,10 +27,15 @@ public class MainActivity02 extends AppCompatActivity {
         });
     }
     void myClick(){
-        int num1 = Integer.parseInt((String) tv.getText());
-        num1-=1;
-        tv.setText(String.valueOf(num1));
+        String dan = String.valueOf(et_dan.getText());
+
+        int gugudan = Integer.parseInt(dan);
+        String answer = "";
+        for(int i = 1; i < 10; i++){
+            answer+= gugudan + " * " + i + " = " + gugudan*i + "\n";
+        }
+
+        et_disp.setText(answer);
+
     }
-
-
 }
