@@ -13,29 +13,27 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.aiai.dao.EmpDao;
 import kr.co.aiai.model.Emp;
 
+
 @WebServlet("/emp_del_act")
 public class EmpDelAct extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		EmpDao dao = new EmpDao();
-		
 		String e_id = request.getParameter("e_id");
 		
-		int cnt = 0;
-		
+		EmpDao ed = new EmpDao();
+		int cnt = -1;
 		try {
-			cnt = dao.delete(e_id);
+			 cnt = ed.delete(e_id);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("e:"+e);
 		}
 		
 		request.setAttribute("cnt", cnt);
 		RequestDispatcher rd = request.getRequestDispatcher("emp_del_act.jsp");
-		
 		rd.forward(request, response);
 	}
 

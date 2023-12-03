@@ -15,25 +15,20 @@ import kr.co.aiai.model.Emp;
 
 @WebServlet("/emp_detail")
 public class EmpDetail extends HttpServlet {
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		EmpDao dao = new EmpDao();
 		String e_id = request.getParameter("e_id");
 		
+		EmpDao ed = new EmpDao();
 		Emp vo = null;
-		
 		try {
-			vo = dao.select(e_id);
+			vo = ed.select(e_id);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("e:"+e);
 		}
 		
 		request.setAttribute("vo", vo);
-		
 		RequestDispatcher rd = request.getRequestDispatcher("emp_detail.jsp");
-		
-		request.setAttribute(getServletName(), response);
 		rd.forward(request, response);
 	}
 

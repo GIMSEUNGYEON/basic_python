@@ -4,6 +4,15 @@
     "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 
 <sqlMap namespace="emp" >
+	<select id="selectList" parameterClass="string" resultClass="kr.co.aiai.model.Emp">
+		select 
+			e_id,
+			e_name,
+			gen,
+			addr
+		from 
+			emp
+	</select>
 	<select id="select" resultClass="kr.co.aiai.model.Emp">
 		select 
 			e_id,
@@ -13,30 +22,17 @@
 		from 
 			emp
 		where 
-			e_id = #crud_id#
+			e_id = #e_id#
 	</select>
 	
-	<select id="selectList" parameterClass="string" resultClass="kr.co.aiai.model.Emp">
-		select 
-			e_id, 
-			e_name, 
-			gen, 
-			addr 
-		from 
-			emp
-	</select>
-	
-	<insert id="insert" parameterClass="kr.co.aiai.model.Emp">
-		insert into
-			emp
-			(e_id, e_name, gen, addr)
-		values
-			(#e_id#, #e_name#, #gen#, #addr#)
-		
-	</insert>
-	
+	<update id="insert" parameterClass="kr.co.aiai.model.Emp">
+		INSERT INTO emp 
+		(e_id,e_name,gen,addr) 
+		VALUES 
+		(#e_id#,#e_name#,#gen#,#addr#)
+	</update>	
 	<update id="update" parameterClass="kr.co.aiai.model.Emp">
-		update emp
+		update emp 
 		set
 			e_name = #e_name#,
 			gen = #gen#,
@@ -44,13 +40,36 @@
 		where
 			e_id = #e_id#
 	</update>
-	
-	<delete id="delete">
-<!-- 	parameterClass는 굳이 지정 안해줘도 됨 -->
-		delete from
-			emp
+	<update id="delete" parameterClass="string">
+		delete from emp 
 		where
 			e_id = #e_id#
-	</delete>
+	</update>
 	
 </sqlMap>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
