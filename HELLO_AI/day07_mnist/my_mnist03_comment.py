@@ -9,7 +9,7 @@ x_train = x_train.reshape((60000, 28, 28, 1)) / 255.0
 x_test = x_test.reshape((10000, 28, 28, 1)) / 255.0
 # 3차원 배열을 신경망에 맞춰주기 위해 4차원 배열로 만들고 있음 부동 소수점을 만들기 위해 255로 나누어서 모든 수를 1 미만 실수로 만듦
 
-# 모델 구성(신경망 구성)(컴파일하기까지)
+# 모델 구성(신경망 구성)(컴파일하기까지)(cnn)
 model = keras.Sequential([
     keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(28,28,1)),
     keras.layers.MaxPooling2D((2,2)),

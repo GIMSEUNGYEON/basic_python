@@ -21,3 +21,10 @@ item = soup.select("channel item")[0]
 
 print(item.select("title")[0].text)
 print(item.select("link")[0].text)
+
+print("====================================")
+
+items = soup.find_all("item")
+for i in items:
+    print(i.find("title"))
+    print(i.find("link"))
