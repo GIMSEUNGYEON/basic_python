@@ -43,4 +43,5 @@ class DaoBusPath :
         
 if __name__ == '__main__':
     de = DaoBusPath()
-    cnt = de.insert("1", "1", "1", "1", "1", "1")
+    print(de.selectList());
+    
