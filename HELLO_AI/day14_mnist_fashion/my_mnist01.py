@@ -21,3 +21,16 @@ model.fit(x_train, y_train, epochs=5, batch_size=128, validation_split=0.2)
 
 test_loss, test_acc = model.evaluate(x_test, y_test)
 print('Test accuracy:', test_acc)
+
+
+# Label    Description
+# 0    T-shirt/top
+# 1    Trouser
+# 2    Pullover
+# 3    Dress
+# 4    Coat
+# 5    Sandal
+# 6    Shirt
+# 7    Sneaker
+# 8    Bag
+# 9    Ankle boot

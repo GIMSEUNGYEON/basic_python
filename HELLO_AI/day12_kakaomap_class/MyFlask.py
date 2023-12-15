@@ -1,11 +1,11 @@
 from flask import Flask, redirect, jsonify
-from day11_crawl2.dao_bus_path import DaoBusPath
+from day12_kakaomap_class.dao_bus_path import DaoBusPath
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return redirect("static/walk_around.html")
+    return redirect("static/bus_here.html")
 
 @app.route('/bp_list', methods=['GET'])
 def bp_list():
